@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div id="app">
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top">
+            <div class="container">
+                <a class="navbar-brand fw-bold text-primary" href="#">{{ name.split(' ')[0] }}<span class="text-dark">Porto</span></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#about">About Me</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#certificates">Certificates</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Home Section (Hero) -->
+        <section id="home" class="hero-section position-relative overflow-hidden">
+            <!-- Background Decorations -->
+            <div class="bg-shape shape-1"></div>
+            <div class="bg-shape shape-2"></div>
+            <div class="bg-shape shape-3"></div>
+            
+            <div class="container position-relative">
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <h5 class="text-primary fw-bold">Hello, I'm</h5>
+                        <h1 class="display-3 fw-bold">{{ name }}</h1>
+                        <p class="lead text-secondary mb-4">{{ headline }}</p>
+                        <div class="d-flex gap-3">
+                            <a href="#about" class="btn btn-primary btn-lg px-4 rounded-pill">Learn More</a>
+                            <a href="#certificates" class="btn btn-outline-dark btn-lg px-4 rounded-pill">View Work</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 text-center mt-5 mt-lg-0">
+                        <img :src="profileImage" alt="Profile" class="profile-img">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Me Section -->
+        <section id="about" class="py-5 bg-white">
+            <div class="container py-5">
+                <div class="row">
+                    <div class="col-12">
+                        <h2 class="section-title">About Me</h2>
+                    </div>
+                    <div class="col-lg-6 mb-4">
+                        <p class="fs-5 text-secondary">{{ aboutText }}</p>
+                        <div class="mt-4">
+                            <h5 class="fw-bold mb-3">Experience</h5>
+                            <div v-for="exp in experiences" :key="exp.year" class="mb-3 border-start border-primary border-4 ps-3">
+                                <span class="badge bg-primary mb-1">{{ exp.year }}</span>
+                                <h6 class="fw-bold mb-0">{{ exp.title }}</h6>
+                                <small class="text-muted">{{ exp.company }}</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <h5 class="fw-bold mb-4">Skills & Expertise</h5>
+                        <div v-for="skill in skills" :key="skill.name" class="mb-3">
+                            <div class="d-flex justify-content-between mb-1">
+                                <span class="fw-medium">{{ skill.name }}</span>
+                                <span class="text-muted">{{ skill.level }}%</span>
+                            </div>
+                            <div class="progress">
+                                <div class="progress-bar bg-primary" role="progressbar" :style="{ width: skill.level + '%' }"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certificates Section -->
+        <section id="certificates" class="py-5 bg-light">
+            <div class="container py-5">
+                <div class="row">
+                    <div class="col-12">
+                        <h2 class="section-title">My Certificates</h2>
+                    </div>
+                </div>
+                <div class="row g-4">
+                    <div v-for="cert in certificates" :key="cert.id" class="col-md-6 col-lg-4">
+                        <div class="card h-100 shadow-sm">
+                            <img :src="cert.image" class="card-img-top" :alt="cert.title">
+                            <div class="card-body">
+                                <div class="mb-2">
+                                    <small class="text-primary fw-bold">{{ cert.issuer }}</small>
+                                </div>
+                                <h5 class="card-title fw-bold">{{ cert.title }}</h5>
+                                <p class="card-text text-muted small">{{ cert.description }}</p>
+                            </div>
+                            <div class="card-footer bg-white border-0 pb-3">
+                                <button class="btn btn-sm btn-outline-primary w-100">Verify Credential</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="text-center mt-5">
+            <div class="container">
+                <div class="social-links mb-3">
+                    <a href="https://github.com/arthaa6days" class="text-white mx-2 fs-4"><i class="fab fa-github"></i></a>
+                    <a href="https://www.instagram.com/vyartha_6/" class="text-white mx-2 fs-4"><i class="fab fa-instagram"></i></a>
+                </div>
+                <p class="mb-0 opacity-75">&copy; 2026 {{ name }}. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Vue JS 3 CDN -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        const { createApp } = Vue
+
+        createApp({
+            data() {
+                return {
+                    name: 'Muhammad Rifqi Jastiartha',
+                    headline: 'Student at Mulawarman College',
+                    profileImage: 'assets/Profile.jpeg',
+                    aboutText: 'Saya Muhammad Rifqi Jastiartha, mahasiswa Fakultas Teknik Program Studi Sistem Informasi di Universitas Mulawarman. Saya memiliki ketertarikan pada bidang teknologi, khususnya dalam memahami dan mengembangkan sistem yang terstruktur dan efisien. Saya senang mempelajari bagaimana sebuah sistem bekerja secara menyeluruh dan bagaimana teknologi dapat digunakan untuk menyelesaikan permasalahan secara efektif.Di luar aktivitas perkuliahan, saya memiliki hobi mendengarkan musik, nongkrong bersama teman, dan bermain game sebagai cara untuk menjaga keseimbangan antara pengembangan diri dan waktu istirahat dan terkadang saya juga suka menonton film untuk melatih skill bahasa ingris saya.',
+                    skills: [
+                        { name: 'HTML & CSS', level: 50 },
+                        { name: 'JavaScript', level: 50 },
+                        // { name: '', level:  },
+                        // { name: '', level:  },
+                        // { name: '', level:  }
+                    ],
+                    experiences: [
+                        { year: '2023 - Present', title: 'Junior Developer', company: '' },
+                        { year: '2025', title: 'Koordinator Acara Upgrading Kepengurusan Inforsa', company: 'Inforsa' }
+                    ],
+                    certificates: [
+                        { 
+                            id: 1, 
+                            title: 'English Course', 
+                            issuer: 'English Domestic',
+                            description: 'Practising english at english domestic pare.',
+                            image: 'assets/Certif ED.png' 
+                        },
+                        { 
+                            id: 2, 
+                            title: 'Koordinator Acara', 
+                            issuer: 'Upgrading Kepengurusan Inforsa',
+                            description: 'Advanced mastery of Vue 3 composition API and state management.',
+                            image: 'assets/Certif Korca.png' 
+                        },
+                    ]
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+</html>
