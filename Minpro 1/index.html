@@ -15,17 +15,17 @@
 
     <div id="app">
         <!-- Navbar -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top shadow-sm">
             <div class="container">
-                <a class="navbar-brand fw-bold text-primary" href="#">{{ name.split(' ')[0] }}<span class="text-dark">Porto</span></a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <a class="navbar-brand fw-bold text-white" href="#"><span class="text-white">Portofolio</span></a>
+                <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#about">About Me</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#certificates">Certificates</a></li>
+                        <li class="nav-item"><a class="nav-link fw-semibold px-3" href="#home">Home</a></li>
+                        <li class="nav-item"><a class="nav-link fw-semibold px-3" href="#about">About Me</a></li>
+                        <li class="nav-item"><a class="nav-link fw-semibold px-3" href="#certificates">Certificates</a></li>
                     </ul>
                 </div>
             </div>
@@ -41,16 +41,19 @@
             <div class="container position-relative">
                 <div class="row align-items-center">
                     <div class="col-lg-6">
-                        <h5 class="text-primary fw-bold">Hello, I'm</h5>
-                        <h1 class="display-3 fw-bold">{{ name }}</h1>
-                        <p class="lead text-secondary mb-4">{{ headline }}</p>
+                        <h5 class="text-primary fw-bold mb-3">Hi, I'm {{ name.split(' ')[0] }}</h5>
+                        <h1 class="display-3 fw-bold text-dark mb-3">Professional <span class="text-primary">Portfolio.</span></h1>
+                        <p class="lead text-dark-emphasis fw-medium mb-4 fs-4">{{ headline }}</p>
                         <div class="d-flex gap-3">
-                            <a href="#about" class="btn btn-primary btn-lg px-4 rounded-pill">Learn More</a>
-                            <a href="#certificates" class="btn btn-outline-dark btn-lg px-4 rounded-pill">View Work</a>
+                            <a href="#about" class="btn btn-primary btn-lg px-5 py-3 rounded-pill fw-bold shadow-sm">Learn More</a>
+                            <a href="#certificates" class="btn btn-outline-primary btn-lg px-5 py-3 rounded-pill fw-bold shadow-sm">View Work</a>
                         </div>
                     </div>
                     <div class="col-lg-6 text-center mt-5 mt-lg-0">
-                        <img :src="profileImage" alt="Profile" class="profile-img">
+                        <div class="profile-container position-relative d-inline-block">
+                            <div class="profile-glow"></div>
+                            <img :src="profileImage" alt="Profile" class="profile-img position-relative">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -110,7 +113,6 @@
                                 <p class="card-text text-muted small">{{ cert.description }}</p>
                             </div>
                             <div class="card-footer bg-white border-0 pb-3">
-                                <button class="btn btn-sm btn-outline-primary w-100">Verify Credential</button>
                             </div>
                         </div>
                     </div>
@@ -141,13 +143,13 @@
         createApp({
             data() {
                 return {
-                    name: 'Muhammad Rifqi Jastiartha',
+                    name: 'Artha',
                     headline: 'Student at Mulawarman College',
-                    profileImage: 'assets/Profile.jpeg',
+                    profileImage: 'assets/Profile 2.jpeg',
                     aboutText: 'Saya Muhammad Rifqi Jastiartha, mahasiswa Fakultas Teknik Program Studi Sistem Informasi di Universitas Mulawarman. Saya memiliki ketertarikan pada bidang teknologi, khususnya dalam memahami dan mengembangkan sistem yang terstruktur dan efisien. Saya senang mempelajari bagaimana sebuah sistem bekerja secara menyeluruh dan bagaimana teknologi dapat digunakan untuk menyelesaikan permasalahan secara efektif.Di luar aktivitas perkuliahan, saya memiliki hobi mendengarkan musik, nongkrong bersama teman, dan bermain game sebagai cara untuk menjaga keseimbangan antara pengembangan diri dan waktu istirahat dan terkadang saya juga suka menonton film untuk melatih skill bahasa ingris saya.',
                     skills: [
                         { name: 'HTML & CSS', level: 50 },
-                        { name: 'JavaScript', level: 50 },
+                        { name: 'JavaScript', level: 20},
                         // { name: '', level:  },
                         // { name: '', level:  },
                         // { name: '', level:  }
@@ -168,7 +170,7 @@
                             id: 2, 
                             title: 'Koordinator Acara', 
                             issuer: 'Upgrading Kepengurusan Inforsa',
-                            description: 'Advanced mastery of Vue 3 composition API and state management.',
+                            description: '',
                             image: 'assets/Certif Korca.png' 
                         },
                     ]
